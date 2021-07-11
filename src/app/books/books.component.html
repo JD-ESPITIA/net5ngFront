@@ -30,7 +30,7 @@
   <mat-row *matRowDef="let row; columns: desplegarColumnas"></mat-row>
 </mat-table>
 
-<mat-paginator [pageSize]="2" [pageSizeOptions]="[1,5,10,20]">
+<mat-paginator (page)="eventoPaginador($event)"     #paginacion [pageSize]="librosPorPagina" [pageSizeOptions]="paginaCombo" [length]="totalLibros">
 </mat-paginator>
 
 <button mat-fab id="boton-agregar" color="warn" (click)="abrirDialog()">
