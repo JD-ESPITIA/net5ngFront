@@ -57,8 +57,12 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   abrirDialog(){
-    this.dialog.open(BookNuevoComponent,{
-      width: '350px'
+    const dialogRef = this.dialog.open(BookNuevoComponent,{
+      width: '550px'
+    });
+
+    dialogRef.afterClosed().subscribe( ()=>{
+      this.booksService.obtenerLibros(this.librosPorPagina, this.paginaActual, this.sort, this.sortDirection, this.filterValue);
     });
   }
 

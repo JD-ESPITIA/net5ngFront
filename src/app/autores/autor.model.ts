@@ -1,5 +1,5 @@
 export interface Autor{
-  autorId: number;
+  id: string;
   nombre: string;
   apellido: string;
   gradoAcademico: string;

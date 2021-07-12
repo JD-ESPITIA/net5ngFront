@@ -19,7 +19,7 @@ export class BooksService{
 
   private baseUrl = environment.baseUrl;
   private booksLista: Books[] = [];
-  bookSubject = new Subject<Books>();
+  bookSubject = new Subject();
   bookPagination: PaginationBooks;
   bookPaginationSubject = new Subject<PaginationBooks>();
 
@@ -50,9 +50,17 @@ export class BooksService{
   }
 
   guardarLibro(book: Books){
+    // this.booksLista.push(book);
 
-    this.booksLista.push(book);
-    this.bookSubject.next(book);
+    this._http.post(this.baseUrl + 'api/libro', book).subscribe( resp => {
+
+      this.bookSubject.next();
+
+    });
+  }
+
+  guardarLibroListener(){
+    return this.bookSubject.asObservable();
   }
 
 }
